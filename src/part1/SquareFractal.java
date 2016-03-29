@@ -7,9 +7,8 @@ import draw.StdDraw;
 public class SquareFractal {
 
 	private double shrink = 0.5;
-	
 	public SquareFractal() {
-		StdDraw.setXscale(0, 150); 
+		StdDraw.setXscale(0, 150);
 		StdDraw.setYscale(0, 150); 
 		
 		Square square = new Square(new Point2D.Double(75, 75), 80);
@@ -24,7 +23,7 @@ public class SquareFractal {
 	public void fractal(Square square, int n, Color color) {
 		// TODO: modify to produce examples/Square/pic1, pic2, and pic3
 		
-		if (n <= 0) return;
+		if (n <= -3) return;
 		
 		double newSize = square.getSize()*shrink;
 		Square bottomLeft  = new Square(square.getBottomLeft(),  newSize);
