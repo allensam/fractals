@@ -23,7 +23,7 @@ public class SquareFractal {
 	public void fractal(Square square, int n, Color color) {
 		// TODO: modify to produce examples/Square/pic1, pic2, and pic3
 		
-		if (n <= -3) return;
+		if (n <= -5) return;
 		
 		double newSize = square.getSize()*shrink;
 		Square bottomLeft  = new Square(square.getBottomLeft(),  newSize);

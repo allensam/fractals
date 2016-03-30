@@ -21,9 +21,21 @@ public class SierpinskiTriangle {
 		StdDraw.clear(StdDraw.GRAY); 
 	}
    
-	public void sierpinski(Point2D.Double a, Point2D.Double b, Point2D.Double c, int n) {
-	   // TODO: implement
-    }
+	public void sierpinski(Point2D.Double top, Point2D.Double left, Point2D.Double right, int n) {
+		if (n <= 0) return;
+
+		Point2D.Double lr = new Point2D.Double(midpoint(right.x, left.x), right.y);
+		Point2D.Double tr = new Point2D.Double(midpoint(top.x, right.x), midpoint(top.y, right.y));
+		Point2D.Double tl = new Point2D.Double(midpoint(top.x, left.x), midpoint(top.y, left.y));
+		drawTriangle(tl,lr,tr, Color.black);
+		sierpinski(top, tr, tl, n-1);
+		sierpinski(tr, right, lr, n-1);
+		sierpinski(tl,lr,left, n-1);
+	}
+
+	public double midpoint(double p1, double p2) {
+		return ((p1 + p2) /2.0);
+	}
    
 	public void drawTriangle(Point2D.Double a, Point2D.Double b, Point2D.Double c, Color color) {
 	   double[] x = {a.x, b.x, c.x};
@@ -33,13 +45,14 @@ public class SierpinskiTriangle {
 	}
 	
 	public void draw(int n) {
-		sierpinski(top, right, left, n);
+		drawTriangle(top, right, left, Color.white);
+		sierpinski(this.top, this.right, this.left, n-1);
 	}
 	
 	
 	
 	public static void main(String[] args) { 
 		SierpinskiTriangle triangle = new SierpinskiTriangle();
-		triangle.draw(3);
+		triangle.draw(6);
 	}
 }
